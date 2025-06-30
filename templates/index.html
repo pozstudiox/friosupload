@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block title %}FriOS Downloads{% endblock %}
+{% block content %}
+
+<h2>Available Files</h2>
+<input type="text" id="search-input" class="search-input" placeholder="Search files...">
+
+{% if files %}
+<ul class="file-list">
+  {% for file in files %}
+  <li class="file-card">
+    <div class="file-icon">
+      <i class="bi {{ file.icon }}"></i>
+    </div>
+    <div class="file-name">{{ file.name }}</div>
+    <div class="file-meta">{{ file.size }} MB</div>
+    <a href="{{ url_for('download_file', filename=file.name) }}" class="download-btn">Download</a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No files available at the moment.</p>
+{% endif %}
+
+{% endblock %}
